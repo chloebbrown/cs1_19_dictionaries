@@ -146,11 +146,27 @@ return false;
 // return the emails in the same order they appear in the input
 // use hasTag
 
+var filterByTag = function(x,y){
+    var a = 0
+    var b = []
+        while (a < y.length){
+            if(hasTag(x,y[a])== true){
+                b.push(y[a]);
+            }
+        a = a + 1
+        }
+    return b;
+}
+
 // parseYear
 // Input: String, in the format "2016"
 // Output: Int, 2016
 // use `parseInt`:
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/parseInt
+
+var parseYear = function(x){
+    return parseInt(x,10);
+}
 
 // parseDate
 // Input: String, in the format"2016-01-20T13:41:00"
@@ -159,6 +175,17 @@ return false;
 // use parseInt and substr:
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/substr
 
+var parseDate = function (x){
+    var a = parseInt(x.substr(0,4), 10);
+    var b = parseInt(x.substr(5,2), 10);
+    var c = parseInt(x.substr(8,2), 10);
+    var d = parseInt(x.substr(11,2), 10);
+    var e = parseInt(x.substr(14,2), 10);
+    var f = parseInt(x.substr(17,2), 10);
+
+    return {year:a, month:b, day:c, hour:d, minute:e, second:f};
+};
+
 // inSubject
 // Input: a String and an Email, in the same format as hasTag
 // Output: true or false
@@ -166,19 +193,62 @@ return false;
 // use .includes
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/includes
 
+var inSubject= function (x,y){
+    if(y.subject.includes(x)){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
 // filterBySubject
 // Input: a String and a list of Emails
 // Output: a list of Emails
 // return a list of the emails that have the first email in their subject
 // use inSubject
 
+var filterBySubject = function(x,y){
+    var a = 0
+    var b = []
+        while (a < y.length){
+            if(inSubject(x,y[a])== true){
+                b.push(y[a]);
+            }
+        a = a + 1
+        }
+    return b;
+};
+
+
 // inBody
 // Input: a String and an Email, in the same format as hasTag
 // Output: true or false
 // return true if the first input is part of the 'body' field of the Email
+
+var inBody= function (x,y){
+    if(y.body.includes(x)){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
 
 // filterByBody
 // Input: a String and a list of Emails
 // Output: a list of Emails
 // return a list of the emails that have the first email in their body
 // use inBody
+
+var filterByBody = function(x,y){
+    var a = 0
+    var b = []
+        while (a < y.length){
+            if(inBody(x,y[a])== true){
+                b.push(y[a]);
+            }
+        a = a + 1
+        }
+    return b;
+};
